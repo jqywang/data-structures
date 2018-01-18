@@ -23,6 +23,7 @@ setPrototype.contains = function(item) {
 
 setPrototype.remove = function(item) {
   if (this.contains(item)) {
+    debugger;
     this.storage.splice(this.toBeRemoved, 1);
   }
 };
