@@ -8,7 +8,9 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this.storage.push(item);
+  if (!this.contains(item)) {
+    this.storage.push(item);
+  }
 };
 
 setPrototype.contains = function(item) {
@@ -29,7 +31,7 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- add : O(1)
+ add : O(n)
  contains: O(n)
  remove: O(n)
  */
