@@ -2,28 +2,25 @@ class Queue {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   constructor() {
-    this.head = 0;
-    this.tail = 0;
-    this.storage = {};
-  }
 
+  	this.count = 0;
+  	this.front = 1;
+  	this.storage = {};
+  }
   enqueue(value) {
-    this.storage[this.tail] = value;
-    this.tail++;
+  	this.count++;
+  	this.storage[this.count] = value;
   }
-
   dequeue() {
-    var temp = this.storage[this.head];
-    delete this.storage[this.head];
-    if(this.head !== this.tail){
-      this.head++;
-    }
-
-    return temp;
+  	if(this.size() !== 0) {
+  		var result = this.storage[this.front];
+  		delete this.storage[this.front];
+  		this.front ++;
+  		return result;
+  	}
   }
-
   size() {
-    return this.tail - this.head;
+  	return (this.count - this.front + 1);
   }
 
 }

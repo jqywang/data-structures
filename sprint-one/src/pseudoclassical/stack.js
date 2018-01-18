@@ -5,18 +5,19 @@ var Stack = function() {
   this.storage = {};
 };
 
-Stack.prototype.push = function(value) {
-  this.storage[this.count] = value;
-  this.count++;
+
+Stack.prototype.pop = function () {
+	if (this.count !== 0) {
+		var result = this.storage[this.count];
+		delete this.storage[this.count];
+		this.count --;
+		return result
+	}
 };
-Stack.prototype.pop = function() {
-  var temp = this.storage[this.count - 1];
-  delete this.storage[this.count - 1];
-  if(this.count !== 0){
-    this.count--;
-  }
-  return temp;
-};
-Stack.prototype.size = function() {
-  return this.count;
-};
+Stack.prototype.push = function (value) {
+	this.count ++;
+	this.storage[this.count] = value;
+}
+Stack.prototype.size = function () {
+	return this.count;
+}
