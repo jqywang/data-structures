@@ -21,4 +21,21 @@ class Stack {
   	return this.count;
   }
 
+  push(value) {
+    this.storage[this.count] = value;
+    this.count++;
+  }
+
+  pop() {
+    var temp = this.storage[this.count - 1];
+    delete this.storage[this.count - 1];
+    if(this.count !== 0){
+      this.count--;
+    }
+    return temp;
+  }
+
+  size() {
+    return this.count;
+  }
 }

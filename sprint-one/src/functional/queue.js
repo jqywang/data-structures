@@ -6,6 +6,9 @@ var Queue = function() {
   var count = 0;
   var frontCount = 1;
 
+  var head = 0;
+  var tail = 0;
+
   // Implement the methods below
 
   someInstance.enqueue = function(value) {

@@ -5,6 +5,7 @@ var Stack = function() {
   this.storage = {};
 };
 
+
 Stack.prototype.pop = function () {
 	if (this.count !== 0) {
 		var result = this.storage[this.count];
