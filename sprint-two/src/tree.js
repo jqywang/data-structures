@@ -2,10 +2,8 @@ var Tree = function(value) {
   var newTree = {};
   _.extend(newTree, treeMethods);
   newTree.value = value;
-
-  // your code here
+  newTree.parent = null;
   newTree.children = [];  
-
   return newTree;
 };
 
@@ -13,6 +11,7 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   var child = Tree(value);
+  child.parent = this;
   this.children.push(child);
 };
 
@@ -35,6 +34,26 @@ treeMethods.contains = function(target) {
   
   return searchNode(this);
 };
+
+treeMethods.removeFromParent = function () {
+  //no input value, select the tree node and calling htis fucntion removes the node and its children from the tree
+  if (this.parent !== null) {
+    var siblings = this.parent.children; //returns children array
+    var index = _.indexOf(siblings, this);
+    this.parent = null;
+    
+    siblings.splice(index, 1);
+    
+  //loop through the array and use indexOf to find the index of child 
+  //splice the parent's children array hence removing the child from parent
+  
+  }
+
+};
+
+// function remove:
+  // set the nodes parent to null
+  // delete node from parents child list
 
 
 
