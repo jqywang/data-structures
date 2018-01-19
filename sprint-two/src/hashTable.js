@@ -5,34 +5,46 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(k, v) {
+HashTable.prototype.insert = function(k, v) { 
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this._storage.get(index) === undefined) {
-    this._storage.set(index, [v]);
+  var list; 
+  if (this.retrieve(k) !== undefined) {
+    this.remove(k);
   }
+  this._storage.get(index) === undefined ? list = [] : list = this._storage.get(index);
+  list.push([v, k]); 
+  this._storage.set(index, list);
 };
+
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index)[0];
+  var list = this._storage.get(index) || [];
+  for (var i = 0; i < list.length; i++) {
+    if (list[i][1] === k) {
+      return list[i][0];
+    }
+  }
+  return undefined;
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var compareValue = this._storage.get(index);
-  var removeFunction = function (value, key, collection) {
-    if (value === compareValue) {
-      collection.splice(value, 1);
-      //break;
+  var list = this._storage.get(index) || [];
+  for (var i = 0; i < list.length; i++) {
+    if (list[i][1] === k) {
+      list.splice(i, 1);
     }
-  };
-  this._storage.each(removeFunction);
+  } 
+  list.length === 0 ? this._storage.set(index, undefined) : this._storage.set(index, list);
 };
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * all constant in perfect hash table
+ * only used for loops in collision cases
  */
 
 
