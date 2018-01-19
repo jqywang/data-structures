@@ -43,18 +43,9 @@ treeMethods.removeFromParent = function () {
     this.parent = null;
     
     siblings.splice(index, 1);
-    
-  //loop through the array and use indexOf to find the index of child 
-  //splice the parent's children array hence removing the child from parent
-  
   }
 
 };
-
-// function remove:
-  // set the nodes parent to null
-  // delete node from parents child list
-
 
 
 /*

@@ -1,5 +1,3 @@
-
-
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
@@ -44,7 +42,8 @@ HashTable.prototype.remove = function(k) {
 /*
  * Complexity: What is the time complexity of the above functions?
  * all constant in perfect hash table
- * only used for loops in collision cases
+ * only used for loops in collision cases - where complexity is O(n)
+ * time complexity for rehashing is O(n)
  */
 
 
