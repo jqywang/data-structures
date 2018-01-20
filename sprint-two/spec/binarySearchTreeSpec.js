@@ -38,12 +38,31 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3, 7]);
   });
   
-  it('should correct return the current depth', function() {
+  it('should execute a callback on every value in a tree using "inOrderTraverse"', function() {
+    var array = [];
+    var func = function(value) { array.push(value); };
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.inOrderTraverse(func);
+    expect(array).to.eql([2, 3, 5, 7]);
+  });
+  
+  it('should correct return the current max depth', function() {
     binarySearchTree = BinarySearchTree(4);
     var testArray = [2, 7, 3, 5, 8, 6];
     for (var i = 0; i < testArray.length; i++) {
       binarySearchTree.insert(testArray[i]);
     }
-    expect(binarySearchTree.checkDepth()).to.equal(3);
+    expect(binarySearchTree.maxDepth()).to.equal(3);
+  });
+  
+  it('should correct return the current min depth', function() {
+    binarySearchTree = BinarySearchTree(4);
+    var testArray = [2, 7, 3, 5, 8, 6];
+    for (var i = 0; i < testArray.length; i++) {
+      binarySearchTree.insert(testArray[i]);
+    }
+    expect(binarySearchTree.minDepth()).to.equal(2);
   });
 });
