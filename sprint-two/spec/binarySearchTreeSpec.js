@@ -38,7 +38,7 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3, 7]);
   });
   
-  it('should correct return the current length', function() {
+  it('should correct return the current depth', function() {
     binarySearchTree = BinarySearchTree(4);
     var testArray = [2, 7, 3, 5, 8, 6];
     for (var i = 0; i < testArray.length; i++) {

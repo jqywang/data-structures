@@ -1,5 +1,9 @@
 var HashTable = function(limit) {
-  this._limit = limit || 8;
+  this._minSize = 8;
+  this._limit = limit || this._minSize;
+  if (this._limit < this._minSize) {
+    this._limit = this._minSize; 
+  }
   this._storage = LimitedArray(this._limit);
   this._size = 0;
 };
@@ -51,7 +55,7 @@ HashTable.prototype.remove = function(k) {
   if (this._size !== 0) {
     this._size--;
   }
-  if (this.checkOccupancy() < 25) {
+  if (this.checkOccupancy() < 25 && this._limit > this._minSize) {
     this.resize(0);
     //halve
   }
