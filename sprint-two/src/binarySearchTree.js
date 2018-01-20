@@ -4,11 +4,11 @@ var BinarySearchTree = function(value) {
   obj.left = null;
   obj.right = null;
   obj.parent = null;
+  //size counter
   return obj;
 };
 
 var BSTMethods = {
-  //insert
   insert: function(value) {
     var newNode = BinarySearchTree(value);
     if (value < this.value) {
@@ -17,6 +17,7 @@ var BSTMethods = {
         newNode.parent = this;
       } else {
         this.left.insert(value);
+        // counter ++
       }
     } else {
       if (this.right === null) {
@@ -24,6 +25,7 @@ var BSTMethods = {
         newNode.parent = this;
       } else {
         this.right.insert(value);
+        // counter ++
       }
     } 
   },
@@ -70,7 +72,28 @@ var BSTMethods = {
     } else if (this.parent !== null) {
       this.parent.depthFirstLog(cb, alreadyRan);
     }
+  },
+  
+  checkDepth: function() {
+    var maxRight = 0;
+    var maxLeft = 0;
+    
+    if (this.right === null && this.left === null) {
+      return 0;
+    } 
+    
+    if (this.right !== null) {
+      maxRight = this.right.checkDepth();
+    }
+    
+    if (this.left !== null) {
+      maxLeft = this.left.checkDepth();
+    }
+    
+    return Math.max(maxRight, maxLeft) + 1;
   }
+  
+  
 };
 
 /*

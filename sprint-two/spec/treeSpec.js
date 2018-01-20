@@ -62,8 +62,6 @@ describe('tree', function() {
     expect(deletedTree.parent).to.equal(null);
     expect(deletedTree.contains(7)).to.equal(true);
     expect(deletedTree.contains(9)).to.equal(true);    
-    
-
   });
-
+  
 });
