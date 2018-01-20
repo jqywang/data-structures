@@ -23,5 +23,31 @@ describe('set', function() {
     set.remove('Mel Gibson');
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
+  
+  it('should not re-add duplicate values', function() {
+    set.add(4);
+    set.add(5);
+    set.add(5);
+    set.remove(5);
+    expect(set.contains(5)).to.equal(false);
+  });
+  
+  it('should handle numeric values', function() {
+    set.add(4);
+    set.add(5);
+    set.add(5);
+    set.remove(5);
+    expect(set.contains(5)).to.equal(false);
+  });
+  
+  it('should handle input objects of any type', function() {
+    var obj1 = {a: 'b'};
+    var obj2 = {b: 'c'};
+    set.add(obj1);
+    set.add(obj2);
+    set.remove(obj2);
+    expect(set.contains(obj1)).to.equal(true);
+    expect(set.contains(obj2)).to.equal(false);
+  });
 
 });

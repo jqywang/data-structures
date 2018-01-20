@@ -7,7 +7,8 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this._storage.insert(item, item);
+  var k = JSON.stringify(item);
+  this._storage.insert(k, item);
   
   // refactored
   // if (!this.contains(item)) {
@@ -16,14 +17,16 @@ setPrototype.add = function(item) {
 };
 
 setPrototype.contains = function(item) {
-  return this._storage.retrieve(item) !== undefined;
+  var k = JSON.stringify(item);
+  return this._storage.retrieve(k) !== undefined;
   
   // refactored
   // return _.contains(this._storage, item);
 };
 
 setPrototype.remove = function(item) {
-  this._storage.remove(item);
+  var k = JSON.stringify(item);
+  this._storage.remove(k);
   
   
   // refactored
